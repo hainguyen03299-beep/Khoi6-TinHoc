@@ -6,15 +6,28 @@
 <title>KHO GAME TIN HỌC</title>
 
 <style>
-* {
-    box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #a8e063, #56ab2f);
     color: white;
+    overflow-x: hidden;
+}
+
+/* ANIMATION PAGE LOAD */
+body {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* HEADER */
@@ -34,36 +47,28 @@ body {
     opacity: 0.9;
 }
 
-/* GRID RESPONSIVE */
+/* GRID */
 .grid {
     display: grid;
     gap: 15px;
     padding: 15px;
-}
-
-/* MOBILE: 1 cột */
-.grid {
     grid-template-columns: 1fr;
 }
 
 /* TABLET */
 @media (min-width: 600px) {
-    .grid {
-        grid-template-columns: 1fr 1fr;
-    }
+    .grid { grid-template-columns: 1fr 1fr; }
 }
 
 /* LAPTOP */
 @media (min-width: 1024px) {
-    .grid {
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
+    .grid { grid-template-columns: 1fr 1fr 1fr 1fr; }
 }
 
 /* CARD */
 .card {
     background: white;
-    color: #333;
+    color: #2e7d32;
     border-radius: 20px;
     padding: 25px 15px;
     text-align: center;
@@ -74,14 +79,14 @@ body {
     transition: 0.3s;
 }
 
-/* Hover (PC) */
+/* HOVER PC */
 .card:hover {
     transform: translateY(-5px);
 }
 
-/* Click (mobile giống app) */
+/* CLICK MOBILE */
 .card:active {
-    transform: scale(0.95);
+    transform: scale(0.92);
 }
 
 /* ICON */
@@ -97,14 +102,26 @@ body {
     opacity: 0.8;
     padding: 15px;
 }
+
+/* TRANSITION KHI CHUYỂN TRANG */
+.fade-out {
+    animation: fadeOut 0.4s forwards;
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
 </style>
 </head>
 
 <body>
 
 <div class="header">
-    <h1>🎮 Kho Game Tin Học</h1>
-    <p>Chọn khối để bắt đầu học vui!</p>
+    <h1>🌿 Kho Game Tin Học</h1>
+    <p>Học vui – Chơi vui – Thông minh hơn mỗi ngày!</p>
 </div>
 
 <div class="grid">
@@ -132,8 +149,23 @@ body {
 </div>
 
 <div class="footer">
-    Thiết kế bởi Cô Nguyên - THCS Tam Giang
+    🌱 Thiết kế bởi Cô Nguyên - THCS Tam Giang
 </div>
+
+<script>
+// ANIMATION CHUYỂN TRANG
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+        const href = this.getAttribute("href");
+        document.body.classList.add("fade-out");
+
+        setTimeout(() => {
+            window.location.href = href;
+        }, 300);
+    });
+});
+</script>
 
 </body>
 </html>
